@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Pedidos - Laboratório Albert Einstein</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>Laboratório Albert Einstein</h1>
+                <div class="user-info">
+                    <span id="user-name">Usuário</span>
+                    <span id="user-role">Cargo</span>
+                    <a href="/logout" class="btn btn-small">Sair</a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="sidebar">
+            <div class="nav-section">
+                <h3>Menu Principal</h3>
+                <ul>
+                    <li><a href="../dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="nav-section">
+                <h3>Pedidos</h3>
+                <ul>
+                    <li><a href="novo.html">Novo Pedido</a></li>
+                    <li><a href="listar.html" class="active">Meus Pedidos</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="card">
+                <h2>Meus Pedidos</h2>
+                <p>Total de pedidos: <strong id="total-pedidos">0</strong></p>
+            </div>
+
+            <div class="table-container">
+                <table id="tabela-pedidos">
+                    <thead>
+                        <tr>
+                            <th>ID Pedido</th>
+                            <th>Insumo</th>
+                            <th>Quantidade</th>
+                            <th>Fornecedor</th>
+                            <th>Data do Pedido</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-pedidos">
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 30px;">Carregando pedidos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/modules/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = auth.getCurrentUser();
+            if (!user || user.permissao !== 'Analista Local') {
+                window.location.href = '../dashboard.html';
+                return;
+            }
+
+            document.getElementById('user-name').textContent = user.nome;
+            document.getElementById('user-role').textContent = user.permissao;
+
+            carregarPedidos();
+        });
+
+        function carregarPedidos() {
+            // URL pronta: /pedido/listar
+            // fetch('/pedido/listar')
+            //     .then(response => response.json())
+            //     .then(data => renderizarPedidos(data))
+            //     .catch(error => console.error('Erro:', error));
+
+            const pedidosMock = [
+                {
+                    id_pedido: 1,
+                    nome_insumo: 'Álcool 70%',
+                    quantidade: 100,
+                    fornecedor: 'Fornecedor A',
+                    data_pedido: '2025-01-15',
+                    status: 'Pendente'
+                }
+            ];
+
+            renderizarPedidos(pedidosMock);
+        }
+
+        function renderizarPedidos(pedidos) {
+            const tbody = document.getElementById('tbody-pedidos');
+            document.getElementById('total-pedidos').textContent = pedidos.length;
+
+            if (pedidos.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 30px;">Nenhum pedido realizado</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = pedidos.map(pedido => `
+                <tr>
+                    <td>#${pedido.id_pedido}</td>
+                    <td>${pedido.nome_insumo}</td>
+                    <td>${pedido.quantidade}</td>
+                    <td>${pedido.fornecedor}</td>
+                    <td>${new Date(pedido.data_pedido).toLocaleDateString('pt-BR')}</td>
+                    <td><span class="badge badge-${pedido.status === 'Pendente' ? 'warning' : 'success'}">${pedido.status}</span></td>
+                    <td>
+                        <form method="POST" action="/pedido/cancelar" style="display: inline;">
+                            <input type="hidden" name="id_pedido" value="${pedido.id_pedido}">
+                            <button type="submit" class="btn btn-danger btn-small" onclick="return confirm('Cancelar pedido?')">Cancelar</button>
+                        </form>
+                    </td>
+                </tr>
+            `).join('');
+        }
+    </script>
+    <style>
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-success {
+            background-color: #D4EDDA;
+            color: #155724;
+        }
+        .badge-warning {
+            background-color: #FFF3CD;
+            color: #856404;
+        }
+    </style>
+</body>
+</html>

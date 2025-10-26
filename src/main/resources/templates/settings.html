@@ -1,0 +1,91 @@
+<!-- Página de Configurações -->
+<div class="dashboard">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-left">
+        <button class="btn btn-secondary btn-sm" onclick="goBack()">← Voltar</button>
+        <h1>Configurações</h1>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-content">
+    <!-- Configurações Gerais -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Configurações Gerais</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label">URL da API</label>
+          <input type="text" id="apiUrl" class="form-input" placeholder="http://localhost:8080/api" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Dias de Alerta para Vencimento</label>
+          <input type="number" id="diasAlerta" class="form-input" value="30" min="1" max="365" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Quantidade Mínima de Alerta</label>
+          <input type="number" id="quantidadeMinima" class="form-input" value="5" min="0" />
+        </div>
+        <button class="btn btn-primary" onclick="saveSettings()">Salvar Configurações</button>
+      </div>
+    </div>
+
+    <!-- Sobre -->
+    <div class="card" style="margin-top: var(--spacing-xl);">
+      <div class="card-header">
+        <h3 class="card-title">Sobre</h3>
+      </div>
+      <div class="card-body">
+        <p><strong>Aplicação:</strong> Laboratório Albert Einstein - Gerenciamento de Estoque</p>
+        <p><strong>Versão:</strong> 1.0.0</p>
+        <p><strong>Ambiente:</strong> <span id="environment">Desenvolvimento</span></p>
+        <p><strong>Última Atualização:</strong> <span id="lastUpdate">-</span></p>
+      </div>
+    </div>
+
+    <!-- Limpeza de Dados -->
+    <div class="card" style="margin-top: var(--spacing-xl);">
+      <div class="card-header">
+        <h3 class="card-title">Dados Locais</h3>
+      </div>
+      <div class="card-body">
+        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+          Limpar dados armazenados localmente no navegador
+        </p>
+        <button class="btn btn-danger" onclick="clearLocalData()">Limpar Dados Locais</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function saveSettings() {
+    const settings = {
+      apiUrl: document.getElementById("apiUrl").value,
+      diasAlerta: parseInt(document.getElementById("diasAlerta").value),
+      quantidadeMinima: parseInt(document.getElementById("quantidadeMinima").value),
+    }
+    localStorage.setItem("appSettings", JSON.stringify(settings))
+    NotificationManager.success("Configurações salvas com sucesso!")
+  }
+
+  function clearLocalData() {
+    if (confirm("Tem certeza? Esta ação não pode ser desfeita.")) {
+      StorageManager.clearAll()
+      NotificationManager.success("Dados locais limpos!")
+      setTimeout(() => {
+        router.navigate("login")
+      }, 1000)
+    }
+  }
+
+  // Carregar configurações ao abrir página
+  window.addEventListener("load", () => {
+    const settings = JSON.parse(localStorage.getItem("appSettings") || "{}")
+    if (settings.apiUrl) document.getElementById("apiUrl").value = settings.apiUrl
+    if (settings.diasAlerta) document.getElementById("diasAlerta").value = settings.diasAlerta
+    if (settings.quantidadeMinima) document.getElementById("quantidadeMinima").value = settings.quantidadeMinima
+  })
+</script>

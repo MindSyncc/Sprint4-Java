@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Insumos - Laboratório Albert Einstein</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>Laboratório Albert Einstein</h1>
+                <div class="user-info">
+                    <span id="user-name">Usuário</span>
+                    <span id="user-role">Cargo</span>
+                    <button id="btnLogout" class="btn btn-small">Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <nav class="sidebar">
+            <div class="nav-section">
+                <h3>Menu Principal</h3>
+                <ul>
+                    <li><a href="../dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="nav-section">
+                <h3>Gerenciamento de Insumos</h3>
+                <ul>
+                    <li><a href="form.html">Adicionar Insumo</a></li>
+                    <li><a href="listar.html" class="active">Listar Insumos</a></li>
+                    <li><a href="retirar.html">Retirar um Insumo</a>"
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div id="alertContainer"></div>
+            
+            <div class="card">
+                <h2>Insumos Cadastrados</h2>
+                <p>Total de insumos: <strong id="total-insumos">0</strong></p>
+            </div>
+
+            <div class="table-container">
+                <table id="tabela-insumos">
+                    <thead>
+                        <tr>
+                            <th>Código de Barras</th>
+                            <th>Nome</th>
+                            <th>Categoria</th>
+                            <th>Lote</th>
+                            <th>Vencimento</th>
+                            <th>Unidade</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-insumos">
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 30px;">Carregando insumos...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="/js/modules/auth-service.js"></script>
+    <script type="module" src="/js/modules/ui-service.js"></script>
+    <script type="module" src="/js/modules/api-service.js"></script>
+    <script type="module" src="/js/pages/listar-insumos.js"></script>
+    <script type="module" src="/js/services/insumo-service.js"></script>
+    <script type="module" src="../js/app.js"></script>
+</body>
+</html>

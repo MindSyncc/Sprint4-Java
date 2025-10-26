@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratório Albert Einstein - Gerenciamento de Estoque</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo">
+                <h1>Laboratório Albert Einstein</h1>
+                <p>Sistema de Gerenciamento de Estoque</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="funcional">Funcional:</label>
+                    <input type="text" id="funcional" name="funcional" placeholder="Ex: 12345678" required maxlength="8">
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+
+            <div id="alertContainer"></div>
+
+            <div class="login-info">
+                <p><strong>Usuários de Teste:</strong></p>
+                <ul>
+                    <li>Funcional: 12345678 (Analista Corporativo)</li>
+                    <li>Funcional: 87654321 (Analista Local)</li>
+                    <li>Funcional: 11111111 (Almoxarife)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/modules/auth-service.js"></script>
+    <script type="module" src="js/modules/ui-service.js"></script>
+    <script type="module" src="js/modules/api-service.js"></script>
+</body>
+</html>

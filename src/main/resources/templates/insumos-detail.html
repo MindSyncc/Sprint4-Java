@@ -1,0 +1,98 @@
+<!-- Página de Detalhes de Insumo -->
+<div class="dashboard">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-left">
+        <button class="btn btn-secondary btn-sm" onclick="goBack()">← Voltar</button>
+        <h1>Detalhes do Insumo</h1>
+      </div>
+      <div class="header-right">
+        <button class="btn btn-secondary btn-sm" id="editInsumoBtn">Editar</button>
+        <button class="btn btn-danger btn-sm" id="deleteInsumoBtn">Deletar</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-content">
+    <div class="card">
+      <div class="card-body">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl);">
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              Código de Barras
+            </h4>
+            <p id="detailCodigoBarras" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              Nome
+            </h4>
+            <p id="detailNome" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              Categoria
+            </h4>
+            <p id="detailCategoria" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              Lote
+            </h4>
+            <p id="detailLote" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              Data de Vencimento
+            </h4>
+            <p id="detailVencimento" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              Quantidade
+            </h4>
+            <p id="detailQuantidade" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              Unidade de Medida
+            </h4>
+            <p id="detailUnidade" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              Status
+            </h4>
+            <p id="detailStatus" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: var(--spacing-xl);">
+      <div class="card-header">
+        <h3 class="card-title">Histórico de Movimentações</h3>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Tipo</th>
+              <th>Quantidade</th>
+              <th>Usuário</th>
+              <th>Observações</th>
+            </tr>
+          </thead>
+          <tbody id="historicoTableBody">
+            <tr>
+              <td colspan="5" style="text-align: center; padding: var(--spacing-xl);">
+                Nenhuma movimentação registrada
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

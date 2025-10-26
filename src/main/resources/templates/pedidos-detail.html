@@ -1,0 +1,77 @@
+<!-- Página de Detalhes de Pedido -->
+<div class="dashboard">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-left">
+        <button class="btn btn-secondary btn-sm" onclick="goBack()">← Voltar</button>
+        <h1>Detalhes do Pedido</h1>
+      </div>
+      <div class="header-right">
+        <button class="btn btn-secondary btn-sm" id="editPedidoBtn">Editar</button>
+        <button class="btn btn-danger btn-sm" id="cancelPedidoBtn">Cancelar Pedido</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-content">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Informações do Pedido</h3>
+      </div>
+      <div class="card-body">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl);">
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              ID do Pedido
+            </h4>
+            <p id="detailPedidoId" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              Data do Pedido
+            </h4>
+            <p id="detailPedidoData" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              Fornecedor
+            </h4>
+            <p id="detailPedidoFornecedor" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+          <div>
+            <h4 style="color: var(--text-secondary); font-size: var(--font-size-sm); text-transform: uppercase; margin-bottom: var(--spacing-sm);">
+              Status
+            </h4>
+            <p id="detailPedidoStatus" style="font-size: var(--font-size-lg); font-weight: bold;">-</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: var(--spacing-xl);">
+      <div class="card-header">
+        <h3 class="card-title">Itens do Pedido</h3>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Insumo</th>
+              <th>Quantidade</th>
+              <th>Unidade</th>
+              <th>Preço Unitário</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody id="itensPedidoTableBody">
+            <tr>
+              <td colspan="5" style="text-align: center; padding: var(--spacing-xl);">
+                Nenhum item no pedido
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
