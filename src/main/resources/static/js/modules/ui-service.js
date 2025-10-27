@@ -46,9 +46,9 @@ export class UIService {
       <div class="nav-section" id="menu-corporativo" style="display: none;">
         <h3>Relatórios</h3>
         <ul>
-            <li><a href="relatorios/estoque.html">Estoque Geral</a></li>
-            <li><a href="relatorios/pedidos.html">Pedidos</a></li>
-            <li><a href="relatorios/movimentacoes.html">Movimentações</a></li>
+            <li><a href="/unidades/listar.html">Visualizar Unidades</a></li>
+            <li><a href="/pedidos/atender.html">Atender Pedidos</a></li>
+            <li><a href="/movimentacoes/movimentacoes.html">Movimentações</a></li>
         </ul>
       </div>
     `;

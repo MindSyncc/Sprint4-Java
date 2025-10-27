@@ -292,6 +292,7 @@ body {
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   border-top: 4px solid var(--primary-blue);
+  margin-bottom: 20px;
 }
 
 .card h2 {
