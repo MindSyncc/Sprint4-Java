@@ -1,6 +1,5 @@
 // insumo-service.js
 import { ApiService } from "../modules/api-service.js"
-import { AuthService } from "../modules/auth-service.js"
 import { UIService } from "../modules/ui-service.js"
 import { Validator } from "../modules/validators.js"
 
@@ -133,7 +132,7 @@ export class InsumoService {
     }
   }
 
-  // Carrega o estoque de insumos com as quantidades
+  // Carrega o estoque de insumos
   static async loadEstoqueInsumos() {
     try {
       const estoqueInsumos = await ApiService.getEstoqueInsumos()

@@ -1,5 +1,5 @@
 // Módulo de Autenticação
-class AuthModule {
+export class AuthModule {
   constructor() {
     this.currentUser = this.loadUser()
   }

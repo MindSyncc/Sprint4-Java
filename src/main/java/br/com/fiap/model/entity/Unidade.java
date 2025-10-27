@@ -1,5 +1,6 @@
 package br.com.fiap.model.entity;
 
+import br.com.fiap.model.dto.UnidadeDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -40,16 +41,15 @@ public class Unidade {
     public Unidade() {
     }
 
-    public Unidade(Estoque estoque, String nomeUnidade, String rua, String numero,
-                   String bairro, String cidade, String estado, String cep) {
+    public Unidade(Estoque estoque, UnidadeDTO unidadeDTO) {
         this.estoque = estoque;
-        this.nomeUnidade = nomeUnidade;
-        this.rua = rua;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.cep = cep;
+        this.nomeUnidade = unidadeDTO.nomeUnidade();
+        this.rua = unidadeDTO.rua();
+        this.numero = unidadeDTO.numero();
+        this.bairro = unidadeDTO.bairro();
+        this.cidade = unidadeDTO.cidade();
+        this.estado = unidadeDTO.estado();
+        this.cep = unidadeDTO.cep();
     }
 
     // getters / setters

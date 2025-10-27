@@ -22,47 +22,7 @@
 
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
-            <div class="nav-section">
-                <h3>Menu Principal</h3>
-                <ul>
-                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                </ul>
-            </div>
-
-            <!-- Menu para Almoxarife -->
-            <div class="nav-section" id="menu-almoxarife" style="display: none;">
-                <h3>Gerenciamento de Insumos</h3>
-                <ul>
-                    <li><a href="insumos/form.html">Adicionar Insumo</a></li>
-                    <li><a href="insumos/listar.html">Listar Insumos</a></li>
-                    <li><a href="insumos/retirar.html">Retirar um Insumo</a>"
-                </ul>
-            </div>
-
-            <!-- Menu para Analista Local -->
-            <div class="nav-section" id="menu-analista-local" style="display: none;">
-                <h3>Gerenciamento de Estoque</h3>
-                <ul>
-                    <li><a href="estoque/listar.html">Visualizar Estoque</a></li>
-                    <li><a href="movimentacoes/nova.html">Registrar Movimentação</a></li>
-                </ul>
-                
-                <h3>Pedidos</h3>
-                <ul>
-                    <li><a href="pedidos/novo.html">Novo Pedido</a></li>
-                    <li><a href="pedidos/listar.html">Meus Pedidos</a></li>
-                </ul>
-            </div>
-
-            <!-- Menu para Analista Corporativo -->
-            <div class="nav-section" id="menu-corporativo" style="display: none;">
-                <h3>Relatórios</h3>
-                <ul>
-                    <li><a href="relatorios/estoque.html">Estoque Geral</a></li>
-                    <li><a href="relatorios/pedidos.html">Pedidos</a></li>
-                    <li><a href="relatorios/movimentacoes.html">Movimentações</a></li>
-                </ul>
-            </div>
+            
         </nav>
 
         <!-- Main Content -->
@@ -73,11 +33,11 @@
             </div>
         </main>
     </div>
-
+    
+    <script type="module" src="js/app.js"></script>
     <script type="module" src="js/modules/auth-service.js"></script>
     <script type="module" src="js/modules/ui-service.js"></script>
     <script type="module" src="js/modules/api-service.js"></script>
     <script type="module" src="js/dashboard.js"></script>
-    <script type="module" src="js/app.js"></script>
 </body>
 </html>

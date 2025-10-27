@@ -469,6 +469,30 @@ tbody tr:hover {
   border-left-color: var(--primary-blue);
 }
 
+/* ANALISTA LOCAL */
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.badge-success {
+    background-color: #D4EDDA;
+    color: #155724;
+}
+.badge-warning {
+    background-color: #FFF3CD;
+    color: #856404;
+}
+.badge-danger {
+    background-color: #F8D7DA;
+    color: #721C24;
+}
+#pedidos-text {
+    margin-top: 15px;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .sidebar {

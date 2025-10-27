@@ -3,36 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estoque - Laboratório Albert Einstein</title>
+    <title>Estoque - Laboratório MindSync</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="container">
         <header class="header">
             <div class="header-content">
-                <h1>Laboratório Albert Einstein</h1>
+                <h1>Laboratório MindSync</h1>
                 <div class="user-info">
                     <span id="user-name">Usuário</span>
                     <span id="user-role">Cargo</span>
-                    <a href="/logout" class="btn btn-small">Sair</a>
+                    <button id="btnLogout" class="btn btn-small">Sair</button>
                 </div>
             </div>
         </header>
 
         <nav class="sidebar">
-            <div class="nav-section">
-                <h3>Menu Principal</h3>
-                <ul>
-                    <li><a href="../dashboard.html">Dashboard</a></li>
-                </ul>
-            </div>
-            <div class="nav-section">
-                <h3>Gerenciamento de Estoque</h3>
-                <ul>
-                    <li><a href="listar.html" class="active">Visualizar Estoque</a></li>
-                    <li><a href="../movimentacoes/nova.html">Registrar Movimentação</a></li>
-                </ul>
-            </div>
+            <!-- Menu será renderizado aqui -->
         </nav>
 
         <main class="main-content">
@@ -48,10 +36,8 @@
                             <th>Insumo</th>
                             <th>Categoria</th>
                             <th>Quantidade Atual</th>
-                            <th>Quantidade Mínima</th>
-                            <th>Quantidade Máxima</th>
+                            <th>Unidade de medida</th>
                             <th>Status</th>
-                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody id="tbody-estoque">
@@ -64,98 +50,8 @@
         </main>
     </div>
 
-    <script type="module" src="../js/modules/auth.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const user = auth.getCurrentUser();
-            if (!user || user.permissao !== 'Analista Local') {
-                window.location.href = '../dashboard.html';
-                return;
-            }
-
-            document.getElementById('user-name').textContent = user.nome;
-            document.getElementById('user-role').textContent = user.permissao;
-
-            carregarEstoque();
-        });
-
-        function carregarEstoque() {
-            // URL pronta: /estoque/listar
-            // fetch('/estoque/listar')
-            //     .then(response => response.json())
-            //     .then(data => renderizarEstoque(data))
-            //     .catch(error => console.error('Erro:', error));
-
-            const estoqueMock = [
-                {
-                    id_estoque: 1,
-                    nome_insumo: 'Álcool 70%',
-                    categoria: 'Desinfetantes',
-                    qtdAtual: 50,
-                    qtdMinima: 20,
-                    qtdMaxima: 100,
-                    status: 'Disponível'
-                },
-                {
-                    id_estoque: 2,
-                    nome_insumo: 'Luvas Nitrílicas',
-                    categoria: 'Equipamentos de Proteção',
-                    qtdAtual: 15,
-                    qtdMinima: 30,
-                    qtdMaxima: 100,
-                    status: 'Baixo'
-                }
-            ];
-
-            renderizarEstoque(estoqueMock);
-        }
-
-        function renderizarEstoque(estoques) {
-            const tbody = document.getElementById('tbody-estoque');
-
-            if (estoques.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 30px;">Nenhum item em estoque</td></tr>';
-                return;
-            }
-
-            tbody.innerHTML = estoques.map(estoque => {
-                const statusClass = estoque.status === 'Disponível' ? 'success' : estoque.status === 'Baixo' ? 'warning' : 'danger';
-                return `
-                    <tr>
-                        <td>${estoque.nome_insumo}</td>
-                        <td>${estoque.categoria}</td>
-                        <td><strong>${estoque.qtdAtual}</strong></td>
-                        <td>${estoque.qtdMinima}</td>
-                        <td>${estoque.qtdMaxima}</td>
-                        <td><span class="badge badge-${statusClass}">${estoque.status}</span></td>
-                        <td>
-                            <a href="../movimentacoes/nova.html?id=${estoque.id_estoque}" class="btn btn-primary btn-small">Movimentar</a>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        }
-    </script>
-    <style>
-        .badge {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        .badge-success {
-            background-color: #D4EDDA;
-            color: #155724;
-        }
-        .badge-warning {
-            background-color: #FFF3CD;
-            color: #856404;
-        }
-        .badge-danger {
-            background-color: #F8D7DA;
-            color: #721C24;
-        }
-    </style>
+    <script type="module" src="../js/pages/listar-estoques.js"></script>
+    <script type="module" src="../js/dashboard.js"></script>
+    <script type="module" src="../js/app.js"></script>
 </body>
 </html>

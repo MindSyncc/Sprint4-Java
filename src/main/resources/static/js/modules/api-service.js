@@ -136,6 +136,15 @@ export class ApiService {
   static async getMovimentacoes() {
     return this.request("/movimentacao")
   }
+
+  // ===== FORNECEDORES =====
+  static async getFornecedores() {
+    return this.request("/fornecedor")
+  }
+
+  static async getFornecedorById(id) {
+    return this.request(`/fornecedor/${id}`)
+  }
 }
 
 window.apiService = new ApiService()

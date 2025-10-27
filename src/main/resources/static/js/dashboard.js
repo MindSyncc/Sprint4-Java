@@ -3,18 +3,18 @@ import { AuthService } from "./modules/auth-service.js"
 import { UIService } from "./modules/ui-service.js"
 import { ApiService } from "./modules/api-service.js"
 
+
 document.addEventListener("DOMContentLoaded", async () => {
-  // Verificar autenticação
-  AuthService.checkAuthentication()
 
-  // Renderizar informações do usuário
-  UIService.renderUserInfo(AuthService)
-
-  // Mostrar menu baseado na permissão
-  UIService.showMenuByRole(AuthService)
+  // Verifica user
+  const user = AuthService.getCurrentUser()
 
   // Carregar dados do dashboard
   await loadDashboardData()
+
+  // seta o nome e a permissão no header
+  document.getElementById("user-name").textContent = user.nome;
+  document.getElementById("user-role").textContent = user.permissao;
 
   // Marcar link ativo
   const currentPage = window.location.pathname.split("/").pop() || "dashboard.html"
@@ -40,6 +40,7 @@ async function loadDashboardData() {
     }
   } catch (error) {
     UIService.showAlert(alertContainer, "Erro ao carregar dashboard: " + error.message, "danger")
+    console.error(error)
   }
 }
 
@@ -76,7 +77,8 @@ async function loadAlmoxarifeDashboard(container) {
 
 async function loadAnalistaLocalDashboard(container) {
   try {
-    const estoque = await ApiService.getEstoque()
+    console.log("Loading Analista Local Dashboard");
+    const estoque = await ApiService.getInsumos()
     const pedidos = await ApiService.getPedidos()
 
     const html = `
@@ -136,5 +138,5 @@ function countExpiredItems(insumos) {
 }
 
 function countPendingOrders(pedidos) {
-  return pedidos.filter((p) => p.status === "Pendente" || p.status === "Em Processamento").length
+  return pedidos.filter((pedido) => pedido.status === "Pendente" || pedido.status === "Andamento").length
 }
