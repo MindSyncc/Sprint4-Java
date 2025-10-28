@@ -31,7 +31,7 @@ export class PedidoService {
 
       setTimeout(() => {
         window.location.href = "listar.html"
-      }, 5000)
+      }, 3000)
 
     } catch (error) {
       window.UIService.showAlert(alertContainer, "Erro ao criar pedido: " + error.message, "danger")

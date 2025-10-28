@@ -16,7 +16,7 @@ export class UIService {
       <div class="nav-section" id="menu-almoxarife" style="display: none;">
           <h3>Gerenciamento de Insumos</h3>
           <ul>
-              <li><a href="/insumos/form.html">Adicionar Insumo</a></li>
+              <li><a href="/insumos/form.html">Adicionar Insumos</a></li>
               <li><a href="/insumos/listar.html">Listar Insumos</a></li>
               <li><a href="/insumos/retirar.html">Retirar um Insumo</a>"
           </ul>
@@ -48,7 +48,7 @@ export class UIService {
         <ul>
             <li><a href="/unidades/listar.html">Visualizar Unidades</a></li>
             <li><a href="/pedidos/listar.html">Atender Pedidos</a></li>
-            <li><a href="/movimentacoes/movimentacoes.html">Movimentações</a></li>
+            <li><a href="/movimentacoes/listar.html">Movimentações</a></li>
         </ul>
       </div>
     `;

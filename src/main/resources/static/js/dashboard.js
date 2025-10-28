@@ -106,7 +106,7 @@ async function loadAnalistaLocalDashboard(container) {
 
 async function loadCorporativoDashboard(container) {
   try {
-    const insumos = await ApiService.getInsumos()
+    const unidades = await ApiService.getUnidades()
     const pedidos = await ApiService.getPedidos()
 
     const html = `
@@ -116,13 +116,13 @@ async function loadCorporativoDashboard(container) {
       </div>
       
       <div class="card stat-card">
-        <h3>Total de Insumos</h3>
-        <p class="stat-number">${insumos.length || 0}</p>
+        <h3>Total de Pedidos em Aberto</h3>
+        <p class="stat-number">${countPendingOrders(pedidos)}</p>
       </div>
       
       <div class="card stat-card">
-        <h3>Pedidos em Aberto</h3>
-        <p class="stat-number">${countPendingOrders(pedidos)}</p>
+        <h3>Total de Unidades</h3>
+        <p class="stat-number">${unidades.length || 0}</p>
       </div>
     `
 

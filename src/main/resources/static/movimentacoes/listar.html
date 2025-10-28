@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimentações - Laboratório MindSync</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>Laboratório MindSync</h1>
+                <div class="user-info">
+                    <span id="user-name">Usuário</span>
+                    <span id="user-role">Cargo</span>
+                    <button id="btnLogout" class="btn btn-small">Sair</button>
+                </div>
+            </div>
+        </header>
+
+        <nav class="sidebar">
+            <!-- Menu será renderizado aqui -->
+        </nav>
+
+        <main class="main-content">
+
+            <div id="alertContainer"></div>
+
+            <div class="card">
+                <h2>Movimentações</h2>
+                <p>Total de Movimentações: <strong id="total-movimentacoes">0</strong></p>
+            </div>
+
+            <div class="table-container">
+                <table id="tabela-movimentacoes">
+                    <thead>
+                        <tr id="linha-movimentacoes">
+                            <th>ID</th>
+                            <th>Tipo</th>
+                            <th>Motivo</th>
+                            <th>Data Entrada</th>
+                            <th>Data Saída</th>
+                            <th>Quantidade</th>
+                            <th>ID Funcionário</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-movimentacoes">
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 30px;">Carregando movimentacoes...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/app.js"></script>
+    <script type="module" src="../js/pages/listar-movimentacoes.js"></script>
+</body>
+</html>

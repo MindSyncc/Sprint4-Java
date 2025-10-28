@@ -25,7 +25,7 @@ async function loadUnidades() {
   const tbody = document.getElementById("tbody-unidades");
 
   try {
-    const unidades = await ApiService.getUnidades;
+    const unidades = await ApiService.getUnidades();
     console.log("Lista de unidades: ", unidades)
 
     // Limpa a tabela antes de preencher
@@ -45,7 +45,7 @@ async function loadUnidades() {
       row.className = "linha-unidades";
 
       row.innerHTML = `
-        <td>${unidade.idUnidade}</td>
+        <td><strong>${unidade.idUnidade}</strong></td>
         <td>${unidade.nomeUnidade}</td>
         <td>${unidade.rua}</td>
         <td>${unidade.numero}</td>
@@ -53,9 +53,6 @@ async function loadUnidades() {
         <td>${unidade.cidade}</td>
         <td>${unidade.estado}</td>
         <td>${unidade.cep}</td>
-        <td>
-          <a href="form-unidade.html?id=${unidade.idUnidade}" class="btn btn-primary btn-small">Editar</a>
-        </td>
       `;
 
       tbody.appendChild(row);

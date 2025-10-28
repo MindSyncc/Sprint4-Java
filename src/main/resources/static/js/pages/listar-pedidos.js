@@ -13,10 +13,18 @@ let pedidos = {};
 
 async function carregarPedidos() {
     try {
+      // Muda o conteúdo do HTML de acordo com a função (Analista Local ou Corporativo)
         if (userRole == "Analista Local")
         {
           pedidos = await PedidoService.loadPedidos(idUsuarioAtual);
+          const pedidoTitle = document.getElementById("pedidos-title-analista-local");
+          pedidoTitle.style.visibility = "visible"
+
         } else if (userRole == "Analista Corporativo"){
+          const pedidoOldTitle = document.getElementById("pedidos-title-analista-local");
+          pedidoOldTitle.style.display = "none"
+          const pedidoTitle = document.getElementById("pedidos-title-analista-corporativo");
+          pedidoTitle.style.display = "block"
 
           const tabelaAcao = document.getElementById("linha-pedidos")
           const th = document.createElement("th")
@@ -24,6 +32,9 @@ async function carregarPedidos() {
           tabelaAcao.appendChild(th)
           pedidos = await PedidoService.loadPedidosAnalistaCorporativo();
         }
+
+        // Ordena por data (mais recentes primeiro)
+        pedidos.sort((a, b) => new Date(b.dataPedido) - new Date(a.dataPedido));
         
         console.log("Pedidos carregados:", pedidos);
     } catch (error) {
@@ -48,7 +59,7 @@ function renderizarPedidos(pedidos) {
     .map(
       (pedido) => `
                 <tr>
-                    <td>#${pedido.idPedido}</td>
+                    <td><strong>${pedido.idPedido}</strong></td>
                     <td>${pedido.nomeItem}</td>
                     <td>${pedido.quantidade}</td>
                     <td>${pedido.fornecedor.nomeFornecedor}</td>
