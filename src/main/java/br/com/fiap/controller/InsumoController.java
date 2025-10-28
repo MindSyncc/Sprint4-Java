@@ -52,8 +52,8 @@ public class InsumoController {
     public Insumo atualizar(
             @PathVariable Long id,
             @Valid @RequestBody InsumoDTO insumoDTO,
-            BindingResult result
-    ) {
+            BindingResult result) {
+
         if (result.hasErrors()) {
             throw new IllegalArgumentException("Campos inválidos");
         }
@@ -68,7 +68,10 @@ public class InsumoController {
 
         Insumo insumo = new Insumo(insumoDTO, categoria);
         insumo.setIdInsumo(id);
+
+        // Salva no banco
         insumoRepository.save(insumo);
+
         return insumo;
     }
 

@@ -38,50 +38,52 @@ export class PedidoService {
     }
   }
 
-  static getItensPedido() {
-    // Implementar lógica para obter itens do pedido
-    return []
-  }
-
   static async loadPedidos(idUsuario) {
-  try {
-    const pedidos = await ApiService.getPedidos();
-    const pedidosUsuario = pedidos.filter(
-      (pedido) => pedido.funcionario.id === idUsuario
-    );
+    try {
+      const pedidos = await ApiService.getPedidos();
+      const pedidosUsuario = pedidos.filter(
+        (pedido) => pedido.funcionario.id === idUsuario
+      );
 
-    return pedidosUsuario;
+      return pedidosUsuario;
 
-  } catch (error) {
-    console.error("Erro ao carregar pedidos:", error);
-    
-    return [];
-  }
-}
-
-
-  static renderPedidoRow(pedido) {
-    return `
-      <tr>
-        <td>${pedido.id}</td>
-        <td>${window.UIService.formatDate(pedido.dataPedido)}</td>
-        <td>${pedido.fornecedor || "-"}</td>
-        <td><span class="badge badge-${this.getStatusClass(pedido.status)}">${pedido.status}</span></td>
-        <td>${pedido.totalItens || 0}</td>
-        <td>
-          <a href="detalhe.html?id=${pedido.id}" class="btn btn-primary btn-small">Visualizar</a>
-        </td>
-      </tr>
-    `
-  }
-
-  static getStatusClass(status) {
-    const statusMap = {
-      Pendente: "warning",
-      "Em Processamento": "info",
-      Entregue: "success",
-      Cancelado: "danger",
+    } catch (error) {
+      console.error("Erro ao carregar pedidos:", error);
+      
+      return [];
     }
-    return statusMap[status] || "secondary"
+  }
+
+  static async loadPedidosAnalistaCorporativo() {
+    try {
+      const pedidos = await ApiService.getPedidos();
+
+      return pedidos;
+
+    } catch (error) {
+      console.error("Erro ao carregar pedidos:", error);
+      
+      return [];
+    }
+  }
+
+  static async atenderPedido(pedido) {
+    const idPedido = pedido.idPedido
+    try {
+      const data = {
+        nomeItem: pedido.nomeItem,
+        quantidade: pedido.quantidade,
+        status: "Atendido",
+        dataPedido: pedido.dataPedido,
+        idFuncionario: pedido.funcionario.id,
+        idFornecedor: pedido.fornecedor.idFornecedor
+      }
+
+      const response = await ApiService.updatePedido(idPedido, data)
+      window.UIService.showAlert(alertContainer, "Pedido atendido com sucesso!", "success")
+      console.log("Pedido atendido com sucesso!", response)
+    } catch (error) {
+      window.UIService.showAlert(alertContainer, "Erro ao atender pedido: " + error.message, "danger")
+    }
   }
 }

@@ -24,6 +24,9 @@
         </nav>
 
         <main class="main-content">
+
+            <div id="alertContainer"></div>
+
             <div class="card">
                 <h2>Meus Pedidos</h2>
                 <p>Total de pedidos: <strong id="total-pedidos">0</strong></p>
@@ -32,7 +35,7 @@
             <div class="table-container">
                 <table id="tabela-pedidos">
                     <thead>
-                        <tr>
+                        <tr id="linha-pedidos">
                             <th>ID Pedido</th>
                             <th>Insumo</th>
                             <th>Quantidade</th>
@@ -51,7 +54,21 @@
         </main>
     </div>
 
-    <script type="module" src="../js/dashboard.js"></script>
+    <div id="pedidoModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="fecharModal" class="close">&times;</span>
+            <h2>Detalhes do pedido</h2>
+            <p><strong>ID: </strong> <span id="modal-id"></span></p>
+            <p><strong>Item: </strong> <span id="modal-item"></span></p>
+            <p><strong>Quantidade: </strong> <span id="modal-quantidade"></span></p>
+            <p><strong>Fornecedor: </strong> <span id="modal-fornecedor"></span></p>
+            <p><strong>Status: </strong> <span id="modal-status"></span></p>
+            <p><strong>Data: </strong> <span id="modal-data"></span></p>
+            <button id="btnAtender">Atender</button>
+
+        </div>
+    </div>
+
     <script type="module" src="../js/app.js"></script>
     <script type="module" src="../js/pages/listar-pedidos.js"></script>
 </body>

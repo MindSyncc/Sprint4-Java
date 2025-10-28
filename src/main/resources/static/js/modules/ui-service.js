@@ -47,7 +47,7 @@ export class UIService {
         <h3>Relatórios</h3>
         <ul>
             <li><a href="/unidades/listar.html">Visualizar Unidades</a></li>
-            <li><a href="/pedidos/atender.html">Atender Pedidos</a></li>
+            <li><a href="/pedidos/listar.html">Atender Pedidos</a></li>
             <li><a href="/movimentacoes/movimentacoes.html">Movimentações</a></li>
         </ul>
       </div>

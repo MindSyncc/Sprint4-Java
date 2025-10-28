@@ -54,4 +54,29 @@ public class PedidoController {
 
         return pedido;
     }
+
+    @PutMapping("/pedidos/{id}")
+    public Pedido atualizar(
+            @PathVariable Long id,
+            @Valid @RequestBody PedidoDTO pedidoDTO,
+            BindingResult result) {
+
+        if (result.hasErrors()) {
+            result.getAllErrors().forEach(error -> System.out.println("Campo: " + result.getFieldErrors() + error.getDefaultMessage()));
+            throw new IllegalArgumentException("Campos inválidos (verifique console para detalhes)");
+        }
+
+
+        // Busca o pedido existente
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Pedido não encontrado!"));
+
+        // Muda o status para 'Atendido'
+        pedido.setStatus(pedidoDTO.status());
+
+        // Salva no banco
+        pedidoRepository.save(pedido);
+
+        return pedido;
+    }
 }

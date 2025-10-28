@@ -145,6 +145,11 @@ export class ApiService {
   static async getFornecedorById(id) {
     return this.request(`/fornecedor/${id}`)
   }
+
+  // ===== UNIDADES =====
+  static async getUnidades() {
+    return this.request("/unidades")
+  }
 }
 
 window.apiService = new ApiService()
